@@ -6,4 +6,45 @@
 body {
     display: flex;
     flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+button {
+    width: 75px;
+    height: 30px;
+    margin: 5px;
+}
+
+.calc {
+    max-width: 350px;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    border: solid;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.display {
+    display: flex;
+    width: 350px;
+    height: 40px;
+    border: solid;
+    border-radius: 10px;
+    margin: 10px 0px 10px 0px;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    margin: 50px 0px 50px 0px;
+}
+
+.number-btn {
+    background-color: blue;
+}
+
+.op-btn {
+    background-color: red;
 }
