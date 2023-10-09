@@ -76,7 +76,12 @@ function setCalculationDisplay() {
 }
 
 function setResultDisplay() {
-    resultDisplay.innerHTML = `${result}`;
+    if (result.toString().length > 12 ) {
+        resultDisplay.innerHTML = "OVERFLOW"
+    }
+    else {
+        resultDisplay.innerHTML = `${result}`;
+    }
 }
 
 function doMath() {
@@ -84,14 +89,17 @@ function doMath() {
     var2 = var2*1;
     if (operator == "+") {
         result = var1 + var2;
+        result = +result.toFixed(7);
         setResultDisplay();
     }
     else if (operator == "-") {
         result = var1 - var2;
+        result = +result.toFixed(7);
         setResultDisplay();
     }
     else if (operator == "*") {
         result = var1 * var2;
+        result = +result.toFixed(7);
         setResultDisplay();
     }
     else if (operator == "/") {
@@ -101,6 +109,7 @@ function doMath() {
         }
         else {
             result = var1 / var2;
+            result = +result.toFixed(7);
             setResultDisplay();
         }
     }
