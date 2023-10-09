@@ -6,6 +6,7 @@ let result = "";
 const numberButtons = document.querySelectorAll('.number-btn');
 const specialButtons = document.querySelectorAll('.special-btn');
 const operatorButtons = document.querySelectorAll('.op-btn');
+let resultDisplay = document.querySelector('.disp-1');
 
 numberButtons.forEach(button => {
     button.addEventListener('click', (event) => {
@@ -43,14 +44,27 @@ specialButtons.forEach(button => {
 operatorButtons.forEach(button => {
     button.addEventListener('click', (event) => {
         tmpOperator = button.innerHTML;
-        if (tmpOperator == "=" && var1 != "" && var2 != ""){
-            doMath();
-        }
-        else if (var1 == "") {
+        if (var1 == "") {
 
         }
-        else {
+        else if (tmpOperator == "=" && var1 != "" && var2 != ""){
+            doMath();
+        }
+        else if (operator == "") {
             operator = button.innerHTML;
+            setCalculationDisplay();
+        }
+        else if (var1 != "" && operator != "" && var2 != ""){
+            doMath();
+            var1 = result;
+            operator = button.innerHTML;
+            var2 = "";
+            setCalculationDisplay();
+        }
+        else if (result != "") {
+            operator = button.innerHTML
+            var1 = result;
+            var2 = "";
             setCalculationDisplay();
         }
     });
@@ -62,7 +76,6 @@ function setCalculationDisplay() {
 }
 
 function setResultDisplay() {
-    let resultDisplay = document.querySelector('.disp-1');
     resultDisplay.innerHTML = `${result}`;
 }
 
@@ -71,17 +84,26 @@ function doMath() {
     var2 = var2*1;
     if (operator == "+") {
         result = var1 + var2;
+        setResultDisplay();
     }
     else if (operator == "-") {
         result = var1 - var2;
+        setResultDisplay();
     }
     else if (operator == "*") {
         result = var1 * var2;
+        setResultDisplay();
     }
     else if (operator == "/") {
-        result = var1 / var2;
+        if (var2 == 0) {
+            clearEverything();
+            resultDisplay.innerHTML = "Don't do that!";
+        }
+        else {
+            result = var1 / var2;
+            setResultDisplay();
+        }
     }
-    setResultDisplay();
 }
 
 function clearEverything() {
